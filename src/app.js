@@ -13,10 +13,15 @@ const cors =require("cors");
 
 const app=express();
 
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://foodie-frontend-ashen.vercel.app"
+];
+
 app.use(cors({
-    origin:"http://localhost:5173",
-    credentials:true
-}))
+  origin: allowedOrigins,
+  credentials: true
+}));
 
 app.use(cookieParser());
 app.use(express.json());
