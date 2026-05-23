@@ -66,7 +66,11 @@ async function loginUser(req, res){
         id: user._id,
     },process.env.JWT_SECRET)
 
-    res.cookie("token", token);
+    res.cookie("token", token, {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none"
+});
 
     res.status(200).json({
         message:"login successfully",
@@ -82,7 +86,11 @@ async function loginUser(req, res){
 }
 
 function logoutUser(req,res){
-    res.clearCookie("token");
+    res.clearCookie("token", {
+    httpOnly: true,
+    secure: true,
+    sameSite: "none"
+});
     res.status(200).json({
         message:"user logged out successfully "
     });
